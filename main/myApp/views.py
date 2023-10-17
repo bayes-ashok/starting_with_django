@@ -2,6 +2,7 @@ from django.shortcuts import render
 # render is for template
 from django.http import HttpResponse
 from myApp.models import Contact
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -22,6 +23,5 @@ def contact(request):
         desc=request.POST.get('desc')
         contact=Contact(name=name, email=email, desc=desc)
         contact.save()
-
-    
+        messages.success(request, 'Contact saved successfully.')    
     return render(request,"contact.html")
